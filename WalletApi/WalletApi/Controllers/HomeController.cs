@@ -12,13 +12,11 @@ namespace WalletApi.Controllers
     [RoutePrefix("ping")]
     public class PingController : ApiController
     {
-        IAccountService _accountSrv = new AccountService();
-
         [HttpGet]
         [Route("")]
-        public async Task<OperationResult<int>> Ping()
+        public string Ping()
         {
-            return _accountSrv.GetAccountId(1);
+            return "Pong";
         }
 
 

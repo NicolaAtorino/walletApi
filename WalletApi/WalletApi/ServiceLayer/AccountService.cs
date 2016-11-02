@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WalletApi.DataLayer;
 using WalletApi.Repositories.Account;
 using WalletApi.Utilities;
 
@@ -10,10 +11,10 @@ namespace WalletApi.ServiceLayer
 {
     public class AccountService : IAccountService
     {
-        IAccountRepository _repo = new AccountRepository();
-        public AccountService()
+        private readonly IAccountRepository _repo;
+        public AccountService(IAccountRepository repo)
         {
-
+            _repo = repo;
         }
         
         public OperationResult<decimal> Deposit(decimal amount)
@@ -28,8 +29,18 @@ namespace WalletApi.ServiceLayer
 
         public OperationResult<int> GetAccountId(int userId)
         {
-            var account = _repo.GetFiltered(x => x.UserId == userId)
-                .FirstOrDefault();
+            Account account = null;
+            try
+            {
+                account = _repo
+                    .GetFiltered(x => x.UserId == userId)
+                    .FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                return new OperationResult<int>(ErrorMessages.GenericError);
+            }
+            
 
             if (account == null)
             {

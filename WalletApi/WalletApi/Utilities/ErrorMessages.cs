@@ -9,5 +9,7 @@ namespace WalletApi.Utilities
     public static class ErrorMessages
     {
         public static string AccountNotFound = "Account Not Found";
+
+        public static string GenericError = "An Error Has Occurred";
     }
 }

@@ -1,5 +1,10 @@
-﻿using Owin;
+﻿using Ninject.Web.Common.OwinHost;
+using Owin;
 using System.Web.Http;
+using Ninject;
+using System;
+using System.Reflection;
+using Ninject.Web.WebApi.OwinHost;
 
 namespace WalletApi
 {
@@ -8,8 +13,20 @@ namespace WalletApi
         public void Configuration(IAppBuilder appbuilder)
         {
             var config = new HttpConfiguration();
+            
+            //needed for attribute routing
             config.MapHttpAttributeRoutes();
-            appbuilder.UseWebApi(config);
+
+            //configuration for dependency injection specific for ninject + owin host.
+            appbuilder.UseNinjectMiddleware(createKernel);
+            appbuilder.UseNinjectWebApi(config);
+        }
+
+        private IKernel createKernel()
+        {
+            IKernel kernel = new StandardKernel();
+            kernel.Load(Assembly.GetExecutingAssembly());
+            return kernel;
         }
     }
 }

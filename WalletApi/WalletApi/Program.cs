@@ -13,6 +13,7 @@ namespace WalletApi
         {
             var baseAddress = "http://localhost:5000/";
 
+            //use of owin host for a lightweight web api that does not rely on IIS.
             using (WebApp.Start<Startup>(url: baseAddress))
             {
                 Console.WriteLine($"WebApp started at {baseAddress}");

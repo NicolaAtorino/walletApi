@@ -79,6 +79,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="ServiceLayer\IAccountService.cs" />
+    <Compile Include="Utilities\GenericOperationResult.cs" />
+    <Compile Include="Utilities\OperationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

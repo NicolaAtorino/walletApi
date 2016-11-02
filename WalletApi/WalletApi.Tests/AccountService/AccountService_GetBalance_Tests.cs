@@ -14,6 +14,9 @@ namespace WalletApi.Tests
     /// <summary>
     /// all the relevant tests are done on the service, since the controllers 
     /// are very straightforward and the repository requires integration tests.
+    /// 
+    /// These tests are just checking the formal validation of the parameters and the 
+    /// actual presence of the requested account in the db.
     /// </summary>
     [TestClass]
     public class AccountService_GetBalance_Tests

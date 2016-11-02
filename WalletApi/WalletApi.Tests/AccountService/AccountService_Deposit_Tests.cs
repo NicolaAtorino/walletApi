@@ -14,6 +14,13 @@ namespace WalletApi.Tests
     /// <summary>
     /// all the relevant tests are done on the service, since the controllers 
     /// are very straightforward and the repository requires integration tests.
+    /// 
+    /// Those are tests for the deposit operation. Looking at the requirements, there is 
+    /// no need for amount checking, so the only test for the amount is the formal validation.
+    /// 
+    /// The rest of the tests will formally validate the acountId, check the existence of the account 
+    /// and the fact that it is enabled, and then will check how the service will deal with
+    /// the db connection issues.
     /// </summary>
     [TestClass]
     public class AccountService_Deposit_Tests

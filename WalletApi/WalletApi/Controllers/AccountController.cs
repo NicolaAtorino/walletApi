@@ -1,7 +1,10 @@
-﻿using NLog;
+﻿using Newtonsoft.Json;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -23,6 +26,10 @@ namespace WalletApi.Controllers
         [Route("{accountid:int}/balance")]
         public OperationResult<decimal> GetBalance(int accountId)
         {
+            if (accountId <= 0)
+                SendValidationErrorResult<decimal>(ErrorMessages.NotValidAccountId);
+
+
             try
             {
                 return _accountSrv.GetBalance(accountId);
@@ -38,9 +45,14 @@ namespace WalletApi.Controllers
         [Route("{accountid:int}/withdraw")]
         public OperationResult<decimal> WithDraw([FromUri]int accountId, [FromBody]decimal amount)
         {
+            if (accountId <= 0)
+                SendValidationErrorResult<decimal>(ErrorMessages.NotValidAccountId);
+
+            if (amount <= 0)
+                SendValidationErrorResult<decimal>(ErrorMessages.NotValidAmount);
             try
             {
-                return _accountSrv.WithDraw(accountId,amount);
+                return _accountSrv.WithDraw(accountId, amount);
             }
             catch (Exception ex)
             {
@@ -53,6 +65,13 @@ namespace WalletApi.Controllers
         [Route("{accountid:int}/deposit")]
         public OperationResult<decimal> Deposit([FromUri]int accountId, [FromBody]decimal amount)
         {
+
+            if (accountId <= 0)
+                SendValidationErrorResult<decimal>(ErrorMessages.NotValidAccountId);
+
+            if (amount <= 0)
+                SendValidationErrorResult<decimal>(ErrorMessages.NotValidAmount);
+
             try
             {
                 return _accountSrv.Deposit(accountId, amount);
@@ -73,6 +92,9 @@ namespace WalletApi.Controllers
         [Route("{accountid:int}/management/disable")]
         public OperationResult DisableAccount([FromUri]int accountId)
         {
+            if (accountId <= 0)
+                SendValidationErrorResult<decimal>(ErrorMessages.NotValidAccountId);
+
             try
             {
                 return _accountSrv.DisableAccount(accountId);

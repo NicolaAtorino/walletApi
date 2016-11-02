@@ -14,6 +14,12 @@ namespace WalletApi.Tests
     /// <summary>
     /// all the relevant tests are done on the service, since the controllers 
     /// are very straightforward and the repository requires integration tests.
+    /// 
+    /// Those are tests for the disable operation. 
+    /// 
+    /// The the tests will formally validate the acountId, check the existence of the account 
+    /// and the fact that it is enabled and has no money, and then will check how the service will deal with
+    /// the db connection issues.
     /// </summary>
     [TestClass]
     public class AccountService_Disable_Tests

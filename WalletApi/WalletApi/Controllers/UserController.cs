@@ -23,6 +23,9 @@ namespace WalletApi.Controllers
         [Route("{userid:int}/accountId")]
         public OperationResult<int> GetAccount(int userid)
         {
+            if (userid <= 0)
+                SendValidationErrorResult<int>(ErrorMessages.NotValidUserId);
+
             try
             {
                 return _accountSrv.GetAccountId(userid);

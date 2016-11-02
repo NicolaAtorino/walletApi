@@ -14,6 +14,9 @@ namespace WalletApi.Tests
     /// <summary>
     /// all the relevant tests are done on the service, since the controllers 
     /// are very straightforward and the repository requires integration tests.
+    /// 
+    /// It does all the same tests that we do for the deposit, and also it checks that
+    /// the user has enough money to perform the operation.
     /// </summary>
     [TestClass]
     public class AccountService_Withdraw_Tests

@@ -1,6 +1,9 @@
 ﻿#define DEBUG
+using Newtonsoft.Json;
 using NLog;
 using System;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using WalletApi.Utilities;
 
@@ -20,6 +23,28 @@ namespace WalletApi.Controllers
         {
             LogException(ex, action, actionParams);
             return new OperationResult<T>(ErrorMessages.GenericError);
+        }
+
+        protected void SendValidationErrorResult<T>(string errorMessage)
+        {
+            var result = new OperationResult<T>(errorMessage);
+            CreateAndThrowResponseException(result);
+        }
+
+        protected void SendValidationErrorResult(string errorMessage)
+        {
+            var result = new OperationResult(errorMessage);
+            CreateAndThrowResponseException(result);
+        }
+
+        private void CreateAndThrowResponseException(object result)
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.NotFound)
+            {
+                Content = new StringContent(JsonConvert.SerializeObject(result)),
+                ReasonPhrase = ErrorMessages.NotValidAccountId
+            };
+            throw new HttpResponseException(resp);
         }
 
         private void LogException(Exception ex, string action, object[] actionParams)

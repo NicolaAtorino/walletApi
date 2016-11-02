@@ -18,5 +18,10 @@ namespace WalletApi.Utilities
 
         public static string AccountHasMoney = "Account still has money hence it cannot be closed";
 
+        public static string NotValidUserId = "The UserId is not valid";
+
+        public static string NotValidAccountId = "The AccountID is not valid";
+
+        public static string NotValidAmount = "The amount is not valid";
     }
 }

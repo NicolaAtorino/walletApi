@@ -17,6 +17,9 @@ namespace WalletApi
             //needed for attribute routing
             config.MapHttpAttributeRoutes();
 
+            //swagger configuration for the swagger interface
+            SwaggerConfig.Register(config);
+
             //configuration for dependency injection specific for ninject + owin host.
             appbuilder.UseNinjectMiddleware(createKernel);
             appbuilder.UseNinjectWebApi(config);

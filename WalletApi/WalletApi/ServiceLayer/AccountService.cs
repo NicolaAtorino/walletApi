@@ -23,6 +23,12 @@ namespace WalletApi.ServiceLayer
 
         public OperationResult<decimal> Deposit(int accountId, decimal amount)
         {
+            if (accountId <= 0)
+                return new OperationResult<decimal>(ErrorMessages.NotValidAccountId);
+
+            if (amount <= 0)
+                return new OperationResult<decimal>(ErrorMessages.NotValidAmount);
+
             try
             {
                 Account account = null;
@@ -53,6 +59,10 @@ namespace WalletApi.ServiceLayer
 
         public OperationResult DisableAccount(int accountId)
         {
+
+            if (accountId <= 0)
+                return new OperationResult(ErrorMessages.NotValidAccountId);
+
             try
             {
                 Account account = null;
@@ -81,6 +91,10 @@ namespace WalletApi.ServiceLayer
 
         public OperationResult<int> GetAccountId(int userId)
         {
+
+            if (userId <= 0)
+                return new OperationResult<int>(ErrorMessages.NotValidUserId);
+            
             Account account = null;
             try
             {
@@ -104,6 +118,10 @@ namespace WalletApi.ServiceLayer
 
         public OperationResult<decimal> GetBalance(int accountId)
         {
+
+            if (accountId <= 0)
+                return new OperationResult<decimal>(ErrorMessages.NotValidAccountId);
+            
             Account account = null;
             try
             {
@@ -123,6 +141,13 @@ namespace WalletApi.ServiceLayer
 
         public OperationResult<decimal> WithDraw(int accountId, decimal amount)
         {
+
+            if (accountId <= 0)
+                return new OperationResult<decimal>(ErrorMessages.NotValidAccountId);
+
+            if (amount <= 0)
+                return new OperationResult<decimal>(ErrorMessages.NotValidAmount);
+
             try
             {
                 Account account = null;

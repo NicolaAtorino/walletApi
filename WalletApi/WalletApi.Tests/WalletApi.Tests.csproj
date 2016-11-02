@@ -58,7 +58,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AccountServiceTests.cs" />
+    <Compile Include="AccountService\AccountService_Deposit_Tests.cs" />
+    <Compile Include="AccountService\AccountService_GetBalance_Tests.cs" />
+    <Compile Include="AccountService\AccountService_Withdraw_Tests.cs" />
+    <Compile Include="AccountService\AccountService_Disable_Tests.cs" />
+    <Compile Include="AccountService\AccountService_GetAccount_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

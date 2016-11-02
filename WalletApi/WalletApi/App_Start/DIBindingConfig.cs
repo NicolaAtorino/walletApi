@@ -8,7 +8,8 @@ namespace WalletApi.App_Start
     {
         public override void Load()
         {
-            //here we will do all the needed binding for the application (for now, service and repos)
+            //here we will do all the needed binding for the application 
+            //(for now, service and repo)
             Bind<IAccountRepository>().To<AccountRepository>();
             Bind<IAccountService>().To<AccountService>();
         }

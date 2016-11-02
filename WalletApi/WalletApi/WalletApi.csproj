@@ -125,7 +125,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="ServiceLayer\AccountService.cs" />
     <Compile Include="ServiceLayer\IAccountService.cs" />
+    <Compile Include="Utilities\ErrorMessages.cs" />
     <Compile Include="Utilities\GenericOperationResult.cs" />
     <Compile Include="Utilities\OperationResult.cs" />
     <Compile Include="Repositories\Account\AccountRepository.cs" />

@@ -6,8 +6,8 @@ namespace WalletApi.ServiceLayer
     {
         OperationResult<int> GetAccountId(int userId);
         OperationResult<decimal> GetBalance(int accountId);
-        OperationResult<decimal> WithDraw(decimal amount);
-        OperationResult<decimal> Deposit(decimal amount);
+        OperationResult<decimal> WithDraw(int accountId,decimal amount);
+        OperationResult<decimal> Deposit(int accountId, decimal amount);
         OperationResult DisableAccount(int accountId);
     }
 }

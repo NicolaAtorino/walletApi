@@ -1,7 +1,14 @@
 ﻿namespace WalletApi.Utilities
 {
+    /// <summary>
+    /// The Operation Result of the requested operation. Contains information and the return value as Result.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class OperationResult<T> : OperationResult
     {
+        /// <summary>
+        /// The return value of the operation requested.
+        /// </summary>
         public T Result { get; set; }
 
         public OperationResult()

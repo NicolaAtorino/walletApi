@@ -19,6 +19,12 @@ namespace WalletApi.Controllers
             _accountSrv = accountSrv;
         }
 
+        /// <summary>
+        /// Retrieves an accountId based on its UserId
+        /// </summary>
+        /// <param name="userid">The Id of the user</param>
+        /// <returns>The result of the operation with the AccountId 
+        /// or an error message in case of failure.</returns>
         [HttpGet]
         [Route("{userid:int}/accountId")]
         public OperationResult<int> GetAccount(int userid)
@@ -34,7 +40,6 @@ namespace WalletApi.Controllers
             {
                 return ManageException<int>(ex, "GetAccount");
             }
-
         }
     }
 }

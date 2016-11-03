@@ -2,6 +2,9 @@ using System.Web.Http;
 using WebActivatorEx;
 using WalletApi;
 using Swashbuckle.Application;
+using System;
+using System.Reflection;
+using System.IO;
 
 namespace WalletApi
 {
@@ -14,7 +17,12 @@ namespace WalletApi
             config.EnableSwagger(c =>
                     {
                         c.SingleApiVersion("v1", "WalletApi");
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+
+                        var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                        var commentsFileName = Assembly.GetExecutingAssembly().GetName().Name + ".XML";
+                        var commentsFile = Path.Combine(baseDirectory, commentsFileName);
+
+                        c.IncludeXmlComments(commentsFile);
                     })
                 .EnableSwaggerUi();
         }
